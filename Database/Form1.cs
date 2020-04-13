@@ -14,33 +14,24 @@ namespace Database
 {
     public partial class Form1 : Form
     {
-        static string orad = "User Id=MSBD17;Password=bazy2020;Data Source=155.158.112.45:1521/oltpstud;";
-        OracleParameter parm = new OracleParameter();
-
-        public Form1()
+        public void searchName()
         {
-            InitializeComponent();
-            textBox1.Select();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            using(OracleConnection con = new OracleConnection(orad))
+            using (OracleConnection con = new OracleConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString))
             {
-                using(OracleCommand cmd = con.CreateCommand())
+                using (OracleCommand cmd = con.CreateCommand())
                 {
                     try
                     {
                         con.Open();
-                        cmd.BindByName = true;
+                        OracleParameter parm = new OracleParameter();
                         parm.OracleDbType = OracleDbType.Varchar2;
                         cmd.Parameters.Add("lastName", textBox1.Text);
                         cmd.CommandText = "select last_name, first_name, email from employees where" +
                             " UPPER(last_name) LIKE UPPER(:lastName)";
                         cmd.CommandType = CommandType.Text;
                         OracleDataReader dr = cmd.ExecuteReader();
-                        
-                        if(dr == null || !dr.HasRows)
+
+                        if (dr == null || !dr.HasRows)
                         {
                             MessageBox.Show("Nie znaleziono!");
                             listBox1.Items.Clear();
@@ -66,6 +57,17 @@ namespace Database
                     }
                 }
             }
+        }
+
+        public Form1()
+        {
+            InitializeComponent();
+            textBox1.Select();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            searchName();
         }
 
         private void button2_Click(object sender, EventArgs e)
