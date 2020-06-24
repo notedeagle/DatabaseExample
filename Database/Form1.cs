@@ -26,7 +26,7 @@ namespace Database
                         OracleParameter parm = new OracleParameter();
                         parm.OracleDbType = OracleDbType.Varchar2;
                         cmd.Parameters.Add("lastName", textBox1.Text);
-                        cmd.CommandText = "select last_name, first_name, email from employees where" +
+                        cmd.CommandText = "select last_name, first_name, salary from my_employee where" +
                             " UPPER(last_name) LIKE UPPER(:lastName)";
                         cmd.CommandType = CommandType.Text;
                         OracleDataReader dr = cmd.ExecuteReader();
@@ -43,7 +43,7 @@ namespace Database
                                 listBox1.Items.Clear();
                                 listBox1.Items.Add("Nazwisko: " + dr.GetString(0));
                                 listBox1.Items.Add("Imie: " + dr.GetString(1));
-                                listBox1.Items.Add("Email: " + dr.GetString(2));
+                                listBox1.Items.Add("Pensja: " + dr.GetInt32(2));
                                 MessageBox.Show("Znaleziono!");
                             }
                         }
@@ -83,6 +83,18 @@ namespace Database
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var newForm = new Form2();
+            newForm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var newForm = new Form3();
+            newForm.Show();
         }
     }
 }
