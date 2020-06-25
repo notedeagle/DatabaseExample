@@ -27,7 +27,7 @@ namespace Database
                         OracleParameter parm = new OracleParameter();
                         parm.OracleDbType = OracleDbType.Varchar2;
                         cmd.Parameters.Add("lastName", textBox1.Text);                      
-                        cmd.CommandText = "DELETE FROM my_employee WHERE last_name = :lastName";
+                        cmd.CommandText = "DELETE FROM my_employee WHERE UPPER(last_name) = UPPER(:lastName)";
                         cmd.CommandType = CommandType.Text;
                         OracleDataReader dr = cmd.ExecuteReader();
 
@@ -48,6 +48,11 @@ namespace Database
         private void button1_Click(object sender, EventArgs e)
         {
             deleteData();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
