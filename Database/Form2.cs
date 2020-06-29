@@ -27,8 +27,8 @@ namespace Database
                         OracleParameter parm = new OracleParameter();
                         parm.OracleDbType = OracleDbType.Varchar2;
                         cmd.Parameters.Add("id", textBox1.Text);
-                        cmd.Parameters.Add("lastName", textBox3.Text);
-                        cmd.Parameters.Add("firstName", textBox2.Text);
+                        cmd.Parameters.Add("lastName", textBox2.Text);
+                        cmd.Parameters.Add("firstName", textBox3.Text);
                         cmd.Parameters.Add("userId", textBox4.Text);
                         cmd.Parameters.Add("salary", textBox5.Text);
                         cmd.CommandText = "INSERT INTO my_employee VALUES(:id, :lastName, :firstName, :userId, :salary)";
@@ -57,6 +57,7 @@ namespace Database
         private void button1_Click(object sender, EventArgs e)
         {
             addData();
+            Close();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -67,6 +68,51 @@ namespace Database
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void textBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void textBox4_KeyDown(object sender, KeyEventArgs e)
+        {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    SendKeys.Send("{TAB}");
+                }   
+        }
+
+        private void textBox5_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
     }
 }

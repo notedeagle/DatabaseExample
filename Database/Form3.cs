@@ -48,11 +48,20 @@ namespace Database
         private void button1_Click(object sender, EventArgs e)
         {
             deleteData();
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
         }
     }
 }
