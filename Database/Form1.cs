@@ -26,7 +26,7 @@ namespace Database
                         OracleParameter parm = new OracleParameter();
                         parm.OracleDbType = OracleDbType.Varchar2;
                         cmd.Parameters.Add("lastName", textBox1.Text);
-                        cmd.CommandText = "select last_name, first_name, salary from my_employee where" +
+                        cmd.CommandText = "select last_name, first_name, salary from employees where" +
                             " UPPER(last_name) LIKE UPPER(:lastName)";
                         cmd.CommandType = CommandType.Text;
                         OracleDataReader dr = cmd.ExecuteReader();
